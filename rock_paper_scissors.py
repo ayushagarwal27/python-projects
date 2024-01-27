@@ -7,6 +7,8 @@ class RPS:
         print('Welcome to RPS 9000!')
         self.moves: dict = {'rock': '🪨', 'paper': '📃', 'scissors': '✂️'}
         self.valid_moves: list[str] = list(self.moves.keys())
+        self.user_score = 0
+        self.ai_score = 0
 
     def play_game(self):
         user_move: str = input('Rock, paper or scissors ? >>').lower()
@@ -29,18 +31,24 @@ class RPS:
         print(f'You {self.moves[ai_move]}')
         print('-' * 5)
 
+    def print_score(self):
+        print(f'User score: {self.user_score} | AI score: {self.ai_score}')
     def check_move(self, user_move: str, ai_move: str):
         if user_move == ai_move:
             print('It\'s a tie')
         elif user_move == 'rock' and ai_move == 'scissors':
             print('You win!')
+            self.user_score += 1
         elif user_move == 'scissors' and ai_move == 'paper':
             print('You win!')
+            self.user_score += 1
         elif user_move == 'paper' and ai_move == 'rock':
             print('You win!')
+            self.user_score += 1
         else:
+            self.ai_score += 1
             print('AI wins...')
-
+        self.print_score()
 
 if __name__ == '__main__':
     rps = RPS()
